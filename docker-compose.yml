@@ -3,12 +3,9 @@ version: '3'
 services:
   api:
     container_name: todo_api
-    build:
-      context: .
-      dockerfile: ./docker/golang/Dockerfile
+    build: ./docker/golang
     volumes:
-      - .:/go/src/github.com/wkmkymt/go-todo-api
+      - ./app:/go/src/github.com/wkmkymt/go-todo-api/app
     ports:
       - 5000:5000
     command: air
-    tty: true
