@@ -1,14 +1,15 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/gin-gonic/gin"
+
+	"github.com/wkmkymt/go-todo-api/infrastructure/api/router"
+)
 
 func main() {
-	r := gin.Default()
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "ping",
-		})
-	})
+	g := gin.Default()
 
-	r.Run(":5000")
+	router.NewRouter(g)
+
+	g.Run(":5000")
 }
