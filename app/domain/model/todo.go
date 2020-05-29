@@ -9,3 +9,6 @@ type Todo struct {
 	Status    bool      `json:"status`
 	LimitDate time.Time `json:"limit_date"`
 }
+
+// Todos is Todo List Model
+type Todos []Todo
