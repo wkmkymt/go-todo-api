@@ -10,3 +10,21 @@ services:
     ports:
       - 5000:5000
     command: air
+    depends_on:
+      - db
+  db:
+    container_name: todo_db
+    image: postgres:13-alpine
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      TZ: Asisa/Tokyo
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: todo_db
+
+volumes:
+  postgres-data:
+    driver: local
