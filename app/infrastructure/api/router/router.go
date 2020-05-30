@@ -6,7 +6,7 @@ import (
 	"github.com/wkmkymt/go-todo-api/infrastructure/api/handler"
 )
 
-// NewRouter is Setting Routing
+// NewRouter is Creating Routing
 func NewRouter(g *gin.Engine, handler handler.AppHandler) {
 	// API Ver.1
 	v1Routes := g.Group("/api/v1")
