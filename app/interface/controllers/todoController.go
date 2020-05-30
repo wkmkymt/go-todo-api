@@ -9,5 +9,9 @@ type todoController struct {
 }
 
 // TodoController is Todo Controller
-type TodoController interface {
+type TodoController interface {}
+
+// NewTodoController is Creating New Controller
+func NewTodoController(us service.TodoService) TodoController {
+	return todoController{TodoService: us}
 }

@@ -9,5 +9,9 @@ type todoHandler struct {
 }
 
 // TodoHandler is Todo Handler
-type TodoHandler interface {
+type TodoHandler interface {}
+
+// NewTodoHandler is Creating New Todo Handler
+func NewTodoHandler(uc controllers.TodoController) TodoHandler {
+	return &todoHandler{TodoController: uc}
 }
