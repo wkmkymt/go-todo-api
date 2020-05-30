@@ -16,6 +16,7 @@ type config struct {
 		HOST   string
 		PORT   string
 		DBNAME string
+		OPTION string
 	}
 }
 

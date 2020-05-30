@@ -1,6 +1,8 @@
 package registry
 
 import (
+	"github.com/jinzhu/gorm"
+
 	"github.com/wkmkymt/go-todo-api/infrastructure/api/handler"
 	"github.com/wkmkymt/go-todo-api/infrastructure/datastore"
 	"github.com/wkmkymt/go-todo-api/interface/controllers"
@@ -8,7 +10,9 @@ import (
 	"github.com/wkmkymt/go-todo-api/usecase/service"
 )
 
-type todoInteractor struct {}
+type todoInteractor struct {
+	db *gorm.DB
+}
 
 // TodoInteractor is Todo Interactor
 type TodoInteractor interface {
@@ -28,5 +32,5 @@ func (i *todoInteractor) NewTodoService() service.TodoService {
 }
 
 func (i *todoInteractor) NewTodoRepository() repository.TodoRepository {
-	return datastore.NewTodoRepository()
+	return datastore.NewTodoRepository(i.db)
 }

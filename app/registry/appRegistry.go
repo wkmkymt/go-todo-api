@@ -1,6 +1,10 @@
 package registry
 
-import "github.com/wkmkymt/go-todo-api/infrastructure/api/handler"
+import (
+	"github.com/jinzhu/gorm"
+
+	"github.com/wkmkymt/go-todo-api/infrastructure/api/handler"
+)
 
 type appInteractor struct {
 	todoInteractor todoInteractor
@@ -12,8 +16,10 @@ type AppInteractor interface {
 }
 
 // NewAppInteractor is Creating New Application Interactor
-func NewAppInteractor() AppInteractor {
-	return &appInteractor{}
+func NewAppInteractor(db *gorm.DB) AppInteractor {
+	return &appInteractor{
+		todoInteractor{db},
+	}
 }
 
 func (i *appInteractor) NewAppHandler() handler.AppHandler {

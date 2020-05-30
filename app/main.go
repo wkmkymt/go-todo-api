@@ -2,9 +2,11 @@ package main
 
 import (
 	"github.com/gin-gonic/gin"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 
 	"github.com/wkmkymt/go-todo-api/config"
 	"github.com/wkmkymt/go-todo-api/infrastructure/api/router"
+	"github.com/wkmkymt/go-todo-api/infrastructure/datastore"
 	"github.com/wkmkymt/go-todo-api/registry"
 )
 
@@ -15,8 +17,11 @@ func main() {
 	// Get Gin App Engine
 	g := gin.Default()
 
+	// Get DB
+	db := datastore.NewDB()
+
 	// Get App Handler
-	r := registry.NewAppInteractor()
+	r := registry.NewAppInteractor(db)
 	h := r.NewAppHandler()
 
 	// Set App Router

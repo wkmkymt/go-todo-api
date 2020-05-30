@@ -3,10 +3,13 @@ package datastore
 import (
 	"time"
 
+	"github.com/jinzhu/gorm"
+
 	"github.com/wkmkymt/go-todo-api/domain/model"
 )
 
 type todoRepository struct {
+	db *gorm.DB
 }
 
 // TodoRepository is Todo Repository
@@ -15,8 +18,8 @@ type TodoRepository interface {
 }
 
 // NewTodoRepository is Creating New Todo Repository
-func NewTodoRepository() TodoRepository {
-	return &todoRepository{}
+func NewTodoRepository(db *gorm.DB) TodoRepository {
+	return &todoRepository{db: db}
 }
 
 func (ur *todoRepository) FindAll() (model.Todos, error) {
