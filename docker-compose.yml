@@ -4,6 +4,7 @@ services:
   api:
     container_name: todo_api
     build: ./docker/golang
+    working_dir: /go/src/github.com/wkmkymt/go-todo-api/app
     volumes:
       - ./app:/go/src/github.com/wkmkymt/go-todo-api/app
     ports:
