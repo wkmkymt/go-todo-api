@@ -1,5 +1,5 @@
 # Base Image
-FROM golang:1.13.9
+FROM golang:1.13.11-alpine
 
 # Work directory
 WORKDIR /go/src/github.com/wkmkymt/go-todo-api/app
