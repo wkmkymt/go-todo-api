@@ -6,6 +6,7 @@ import (
 	"github.com/jinzhu/gorm"
 
 	"github.com/wkmkymt/go-todo-api/config"
+	"github.com/wkmkymt/go-todo-api/domain/model"
 )
 
 // NewDB is Creating DB
@@ -26,6 +27,8 @@ func NewDB() *gorm.DB {
 	}
 
 	db.LogMode(true)
+
+	db.AutoMigrate(&model.Todo{})
 
 	return db
 }
