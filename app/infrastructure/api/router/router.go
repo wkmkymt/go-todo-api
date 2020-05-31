@@ -14,6 +14,7 @@ func NewRouter(g *gin.Engine, handler handler.AppHandler) {
 		// Todos
 		todoRoutes := v1Routes.Group("/todos")
 		{
+			todoRoutes.POST("/", handler.TodoHandler.CreateTodo)
 			todoRoutes.GET("/", handler.TodoHandler.GetAllTodos)
 		}
 	}
