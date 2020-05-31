@@ -27,6 +27,9 @@ func main() {
 	// Set App Router
 	router.NewRouter(g, h)
 
+	// Stop DB
+	defer db.Close()
+
 	// Run Server
 	g.Run(":5000")
 }
