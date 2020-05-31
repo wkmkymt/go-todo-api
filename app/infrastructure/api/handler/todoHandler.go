@@ -23,10 +23,9 @@ func NewTodoHandler(uc controllers.TodoController) TodoHandler {
 }
 
 func (uh *todoHandler) GetAllTodos(c *gin.Context) {
-	todos, _ := uh.TodoController.GetAllTodos()
-	// if err != nil {
-	// c.JSON(http.StatusBadRequest, err)
-	// }
-	// c.JSON(http.StatusOK, todos)
+	todos, err := uh.TodoController.GetAllTodos()
+	if err != nil {
+		c.JSON(http.StatusBadRequest, err)
+	}
 	c.JSON(http.StatusOK, todos)
 }
