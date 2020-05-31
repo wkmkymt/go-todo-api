@@ -27,19 +27,20 @@ func NewTodoHandler(uc controllers.TodoController) TodoHandler {
 func (uh *todoHandler) CreateTodo(c *gin.Context) {
 	todo := &model.Todo{}
 	if err := c.ShouldBindJSON(&todo); err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
 	err := uh.TodoController.CreateTodo(todo)
-	if err == false {
-		c.JSON(http.StatusCreated, todo)
+	if err == true {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Can't create Todo!"})
 	}
+	c.JSON(http.StatusCreated, todo)
 }
 
 func (uh *todoHandler) GetAllTodos(c *gin.Context) {
 	todos, err := uh.TodoController.GetAllTodos()
 	if err != nil {
-		c.JSON(http.StatusBadRequest, err)
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 	c.JSON(http.StatusOK, todos)
 }
